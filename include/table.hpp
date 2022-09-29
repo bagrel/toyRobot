@@ -4,19 +4,20 @@
 #include "type_definitions.hpp"
 #include "robot.hpp"
 #include <map>
+#include <utility>
 
 class CTable
 {
     public:
-        CTable();
-        ~CTable();
-        bool move_robot_forward(int key);
-        bool place_robot(int key, SPosition_t new_position);
+        CTable(int x, int y);
+        bool move_robot_forward();
+        bool place_robot(SPosition_t new_position, ERobotDirection dir);
+        bool rotate(ERobotRotate direction);
 
     private:
         int size_x;
         int size_y;
-        std::map<int, CRobot> active_robots;
+        std::unique_ptr<CRobot> active_robot;
 };
 
 

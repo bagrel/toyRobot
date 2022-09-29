@@ -7,6 +7,7 @@ enable_testing()
 
 add_library(robot STATIC 
     src/robot.cpp
+    src/table.cpp
 )
 
 target_include_directories(robot
