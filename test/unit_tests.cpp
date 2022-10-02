@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <robot.hpp>
 #include <table.hpp>
+#include <line_parser.hpp>
 
 TEST(Robot_Test, init_pos)
 {
@@ -140,4 +141,10 @@ TEST(Table_Test, rotate_success)
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.rotate(ERobotRotate_Left));
     ASSERT_TRUE(test_table.move_robot_forward());
+}
+
+TEST(LineParser_Test, decode)
+{
+    CLineParser cmd("test");
+    ASSERT_EQ(ECommand_Invalid, cmd.getCommand());
 }

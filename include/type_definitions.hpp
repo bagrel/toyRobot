@@ -67,6 +67,15 @@ typedef enum ERobotRotate
     ERobotRotate_Right = 1
 } ERobotRotate_t;
 
+typedef enum ECommand
+{
+    ECommand_Place = 0,
+    ECommand_Left = 1,
+    ECommand_Right = 2,
+    ECommand_Report = 4,
+    ECommand_Invalid = 5
+} ECommand_t;
+
 typedef struct SPosition
 {
     int x;

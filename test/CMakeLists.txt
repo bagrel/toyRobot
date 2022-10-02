@@ -3,7 +3,7 @@ project(toyRobot_test VERSION 0.1.0)
 
 add_subdirectory(googletest)
 
-add_executable(${PROJECT_NAME} test_robot.cpp)
+add_executable(${PROJECT_NAME} unit_tests.cpp)
 target_include_directories(toyRobot_test
     PUBLIC 
         ${PROJECT_SOURCE_DIR}/../include
