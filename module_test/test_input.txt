@@ -1,9 +1,8 @@
 a)----------------
-Halu
 REPORT
-out: Halu
+Output: Robot is not yet placed. Please restart APP
 
 b)----------------
-Habba
+PLACE 0,0,NORTH
 REPORT
-out: Halu
+Output: 0,0,NORTH

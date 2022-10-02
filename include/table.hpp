@@ -17,7 +17,7 @@ class CTable
     private:
         int size_x;
         int size_y;
-        std::unique_ptr<CRobot> active_robot;
+        std::shared_ptr<CRobot> active_robot;
 };
 
 

@@ -11,13 +11,13 @@ def run_test(nme, ti):
     test_run.stdout.readline()
     cmd = ti.readline().rstrip()
     cmdList = []
-    while('out' != cmd[0:3]):
+    while('Output' != cmd[0:6]):
         print("Sending command: "+cmd)
         cmdList.append(cmd)
         cmd = ti.readline().rstrip()
     result = test_run.communicate(('\n'.join(cmdList)).encode())
     x = result[0].decode().rstrip()
-    if x == cmd.rstrip():
+    if x == cmd[7:].rstrip():
         sys.stdout.write(GREEN)
         print('Test '+nme+'PASS\n')
         sys.stdout.write(RESET)
@@ -25,7 +25,7 @@ def run_test(nme, ti):
         sys.stdout.write(RED)
         print('Test '+nme+'FAIL')
         sys.stdout.write(RESET)
-        print('Expected '+cmd+', got '+x+'\n')
+        print('Expected '+cmd[7:]+', got '+x+'\n')
 
 
 print('Starting toyRobot Test')

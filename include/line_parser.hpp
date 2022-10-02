@@ -4,37 +4,18 @@
 #include "type_definitions.hpp"
 #include <string>
 #include <table.hpp>
+#include <vector>
 
 class CLineParser
 {
     public:
         CLineParser(std::string input_line);
         ECommand_t getCommand();
+        std::vector<std::string> get_args();
     private:
         std::string line;
+        std::vector<std::string> args;
 };
 
-class CCommand
-{
-    public:
-        virtual void execute(CTable &table);
-};
-
-class CCommand_Place : CCommand
-{
-    private:
-        SPosition_t new_place;
-};
-
-class CCommand_Rotate : CCommand
-{
-    private:
-        ERobotRotate_t rotate_direction;
-};
-
-class CCommand_Report : CCommand
-{
-
-};
 
 #endif
