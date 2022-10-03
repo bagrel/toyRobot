@@ -2,10 +2,52 @@
 #include <type_definitions.hpp>
 #include <robot.hpp>
 #include <line_parser.hpp>
-#include <toy_cmd.hpp>
+#include <gameCommand.hpp>
 #include <memory>
 
 using namespace std;
+
+bool handleLineInput(CTable& gameTable, string line) {
+    CLineParser cmdLine(line);
+    unique_ptr<CCommand> curCmdCls;
+    bool cont = true;
+    switch(cmdLine.parse())
+    {
+        case ECommand_Place:
+        {
+            curCmdCls.reset(new CCommand_Place(cmdLine.get_args(), &gameTable));
+        }
+        break;
+        case ECommand_Left:
+        {
+            curCmdCls.reset(new CCommand_Rotate(gameTable.getRobotOnTable(), ECommand_Left));
+        }
+        break;
+        case ECommand_Right:
+        {
+            curCmdCls.reset(new CCommand_Rotate(gameTable.getRobotOnTable(), ECommand_Right));
+        }
+        break;
+        case ECommand_Move:
+        {
+            curCmdCls.reset(new CCommand_Move(&gameTable));
+        }
+        break;
+        case ECommand_Report:
+        {
+            curCmdCls.reset(new CCommand_Report(gameTable.getRobotOnTable()));
+            cont = false;
+        }
+        break;
+        default:
+        {
+            cout<<"Unknown CommandType"<<endl;
+        }
+        break;
+    }
+    curCmdCls->execute();
+    return cont;
+}
 
 int main(int, char** argv) {
     cout<<"Welcome to ToyRobot APP"<<endl;
@@ -15,50 +57,13 @@ int main(int, char** argv) {
     cout<<"[RIGHT]: Rotates the robot clockwise"<<endl;
     cout<<"[REPORT]: Prints the robot's position and direction; Ends the APP"<<endl;
     
-    CCommand_Invalid* init = new CCommand_Invalid("Init");
-    unique_ptr<CCommand> curCmdCls;
-    curCmdCls.reset(init);
     CTable gameTable(5,5);
-    shared_ptr<CRobot> gameRobot;
 
-    while(ECommand_Report != curCmdCls->getCmdType())
+    bool cont = true;
+    while(cont)
     {
         string l;
         getline(cin,l);
-        CLineParser cmdLine(l);
-        switch(cmdLine.getCommand())
-        {
-            case ECommand_Place:
-            {
-                curCmdCls.reset(new CCommand_Place(&gameRobot, cmdLine.get_args(), &gameTable));
-            }
-            break;
-            case ECommand_Rotate:
-            {
-                curCmdCls.reset(new CCommand_Rotate(gameRobot.get(), cmdLine.get_args()));
-            }
-            break;
-            case ECommand_Move:
-            {
-                curCmdCls.reset(new CCommand_Move(&gameTable));
-            }
-            break;
-            case ECommand_Report:
-            {
-                curCmdCls.reset(new CCommand_Report(gameRobot.get()));
-            }
-            break;
-            case ECommand_Invalid:
-            {
-                curCmdCls.reset(new CCommand_Invalid(l));
-            }
-            break;
-            default:
-            {
-                cout<<"Unknown CommandType"<<endl;
-            }
-            break;
-        }
-        curCmdCls->execute();
+        cont = handleLineInput(gameTable, l);
     }
 }

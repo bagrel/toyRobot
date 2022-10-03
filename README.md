@@ -23,7 +23,7 @@ cd build
 make -j10
 ```
 
-To run program:
+To running the app:
 ```
 cd build
 ./toyRobot
@@ -45,4 +45,10 @@ write Test Case with the following format in [project_directory]/module_test/tes
 [command input n]
 REPORT
 Output: [Expected Output]
+```
+Separate test cases by a new line
+
+then run using Python 3.0 or above
+```
+python3 module_test.py
 ```

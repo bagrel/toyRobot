@@ -9,7 +9,7 @@ add_library(robot STATIC
     src/robot.cpp
     src/table.cpp
     src/line_parser.cpp
-    src/toy_cmd.cpp
+    src/gameCommand.cpp
 )
 
 target_include_directories(robot

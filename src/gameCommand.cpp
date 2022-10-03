@@ -1,5 +1,5 @@
 #include <iostream>
-#include <toy_cmd.hpp>
+#include <gameCommand.hpp>
 
 CCommand::CCommand(ECommand_t cmd) : cmdType(cmd)
 {
@@ -14,8 +14,8 @@ ECommand_t CCommand::getCmdType()
     return cmdType;
 }
 
-CCommand_Place::CCommand_Place(std::shared_ptr<CRobot>* in_robo, std::vector<std::string> in_args, CTable* in_table) : CCommand(ECommand_Place),
-robot(in_robo), args(in_args), table(in_table)
+CCommand_Place::CCommand_Place(std::vector<std::string> in_args, CTable* in_table) : CCommand(ECommand_Place),
+args(in_args), table(in_table)
 {
 }
 
@@ -48,15 +48,15 @@ void CCommand_Place::execute()
     nPos.x = std::stoi(args.back());
     args.pop_back();
     
-    if(!table->place_robot(robot, nPos, newDir))
+    if(!table->place_robot(nPos, newDir))
     {
         std::cout<<"Invalid position x: "<<nPos.x<<", y: "<<nPos.y<<std::endl;
         return;
     }
 }
 
-CCommand_Rotate::CCommand_Rotate(CRobot* in_robo, std::vector<std::string> in_args) : CCommand(ECommand_Rotate),
-robot(in_robo), args(in_args)
+CCommand_Rotate::CCommand_Rotate(CRobot* in_robo, ECommand_t cmd) : CCommand(cmd),
+robot(in_robo)
 {
 }
 
@@ -64,22 +64,18 @@ void CCommand_Rotate::execute()
 {
     if(NULL!=robot)
     {
-        std::string arg = args.back();
-        args.pop_back();
-
-        std::string rotateDirList[] ={"CCW","CW"};
-        int rotate_index = 0;
-        while(rotate_index < ERobotRotate_Invalid && rotateDirList[rotate_index] != arg)
+        ECommand_t cmd = getCmdType();
+        ERobotRotate_t rotateDir = ERobotRotate_Invalid;
+        if(ECommand_Left == cmd)
         {
-            rotate_index++;
-        }
-        ERobotRotate_t rotateDir = ERobotRotate_t(rotate_index);
-        if(ERobotRotate_Invalid == rotateDir)
+            robot->rotate(ERobotRotate_CCW);
+        } else if (ECommand_Right == cmd)
+        {
+            robot->rotate(ERobotRotate_CW);
+        } else 
         {
             std::cout<<"Invalid rotation"<<std::endl;
-            return;
         }
-        robot->rotate(rotateDir);
     }
     else
     {

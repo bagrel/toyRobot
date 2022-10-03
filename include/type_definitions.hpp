@@ -64,18 +64,19 @@ ERobotDirection::ERobotDirection_West
 
 typedef enum ERobotRotate
 {
-    ERobotRotate_CCW = 0,
-    ERobotRotate_CW = 1,
-    ERobotRotate_Invalid = 2
+    ERobotRotate_CCW,
+    ERobotRotate_CW,
+    ERobotRotate_Invalid
 } ERobotRotate_t;
 
 typedef enum ECommand
 {
-    ECommand_Place = 0,
-    ECommand_Rotate = 1,
-    ECommand_Move = 2,
-    ECommand_Report = 3,
-    ECommand_Invalid = 4
+    ECommand_Place,
+    ECommand_Left,
+    ECommand_Right,
+    ECommand_Move,
+    ECommand_Report,
+    ECommand_Invalid
 } ECommand_t;
 
 typedef struct SPosition

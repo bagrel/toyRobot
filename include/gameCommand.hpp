@@ -1,5 +1,5 @@
-#ifndef TOY_CMD
-#define TOY_CMD
+#ifndef GAME_COMMAND
+#define GAME_COMMAND
 #include <vector>
 #include <string>
 #include "table.hpp"
@@ -37,10 +37,9 @@ class CCommand_Report : public CCommand
 class CCommand_Place : public CCommand
 {
     public:
-        CCommand_Place(std::shared_ptr<CRobot>* in_robo, std::vector<std::string> in_args, CTable* in_table);
+        CCommand_Place(std::vector<std::string> in_args, CTable* in_table);
         virtual void execute();
     private:
-        std::shared_ptr<CRobot>* robot;
         std::vector<std::string> args;
         CTable* table;
 };
@@ -48,7 +47,7 @@ class CCommand_Place : public CCommand
 class CCommand_Rotate : public CCommand
 {
     public:
-        CCommand_Rotate(CRobot* in_robo, std::vector<std::string> in_args);
+        CCommand_Rotate(CRobot* in_robo, ECommand_t cmd);
         virtual void execute();
     private:
         CRobot* robot;

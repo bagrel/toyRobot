@@ -65,8 +65,7 @@ TEST(Table_Test, add_robot)
 {
     CTable test_table(5, 5);
     SPosition_t pos = {1, 2};
-    std::shared_ptr<CRobot> test_robo;
-    test_table.place_robot(&test_robo, pos, ERobotDirection_South);
+    test_table.place_robot(pos, ERobotDirection_South);
 }
 
 TEST(Table_Test, move_no_robot)
@@ -79,8 +78,7 @@ TEST(Table_Test, move_north)
 {
     CTable test_table(5, 5);
     SPosition_t pos = {0, 0};
-    std::shared_ptr<CRobot> test_robo;
-    test_table.place_robot(&test_robo, pos, ERobotDirection_North);
+    test_table.place_robot(pos, ERobotDirection_North);
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
@@ -92,8 +90,7 @@ TEST(Table_Test, move_south)
 {
     CTable test_table(5, 5);
     SPosition_t pos = {0, 4};
-    std::shared_ptr<CRobot> test_robo;
-    test_table.place_robot(&test_robo, pos, ERobotDirection_South);
+    test_table.place_robot(pos, ERobotDirection_South);
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
@@ -105,8 +102,7 @@ TEST(Table_Test, move_east)
 {
     CTable test_table(5, 5);
     SPosition_t pos = {0, 0};
-    std::shared_ptr<CRobot> test_robo;
-    test_table.place_robot(&test_robo, pos, ERobotDirection_East);
+    test_table.place_robot(pos, ERobotDirection_East);
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
@@ -118,8 +114,7 @@ TEST(Table_Test, move_west)
 {
     CTable test_table(5, 5);
     SPosition_t pos = {4, 0};
-    std::shared_ptr<CRobot> test_robo;
-    test_table.place_robot(&test_robo, pos, ERobotDirection_West);
+    test_table.place_robot(pos, ERobotDirection_West);
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
     ASSERT_TRUE(test_table.move_robot_forward());
@@ -149,5 +144,5 @@ TEST(Table_Test, rotate_success)
 TEST(LineParser_Test, decode)
 {
     CLineParser cmd("test");
-    ASSERT_EQ(ECommand_Invalid, cmd.getCommand());
+    ASSERT_EQ(ECommand_Invalid, cmd.parse());
 }
