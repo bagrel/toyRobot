@@ -11,13 +11,13 @@ class CTable
     public:
         CTable(int x, int y);
         bool move_robot_forward();
-        bool place_robot(SPosition_t new_position, ERobotDirection dir);
+        bool place_robot(std::shared_ptr<CRobot>* in_robo, SPosition_t new_position, ERobotDirection dir);
         bool rotate(ERobotRotate direction);
 
     private:
         int size_x;
         int size_y;
-        std::shared_ptr<CRobot> active_robot;
+        std::weak_ptr<CRobot> active_robot;
 };
 
 

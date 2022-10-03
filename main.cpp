@@ -38,6 +38,11 @@ int main(int, char** argv) {
                 curCmdCls.reset(new CCommand_Report(gameRobot.get()));
             }
             break;
+            case ECommand_Place:
+            {
+                curCmdCls.reset(new CCommand_Place(&gameRobot, cmdLine.get_args(), &gameTable));
+            }
+            break;
             default:
             {
                 cout<<"Unknown CommandType"<<endl;

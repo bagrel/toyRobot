@@ -1,7 +1,7 @@
 #include "robot.hpp"
 #include <iostream>
 
-CRobot::CRobot(SPosition_t pos, ERobotDirection direction) : cur_position(pos), cur_face(direction)
+CRobot::CRobot(SPosition_t pos, ERobotDirection_t direction) : cur_position(pos), cur_face(direction)
 {
 }
 
@@ -41,13 +41,18 @@ int CRobot::get_y_position()
     return cur_position.y;
 }
 
-ERobotDirection CRobot::get_direction()
+ERobotDirection_t CRobot::get_direction()
 {
     return cur_face;
+}
+
+void CRobot::set_direction(ERobotDirection_t new_direction)
+{
+    cur_face = new_direction;
 }
 
 void CRobot::report()
 {
     std::string face[] ={"NORTH", "EAST", "SOUTH", "WEST"};
-    std::cout<<cur_position.x<<", "<<cur_position.y<<", "<<face[cur_face]<<std::endl;
+    std::cout<<cur_position.x<<","<<cur_position.y<<","<<face[cur_face]<<std::endl;
 }

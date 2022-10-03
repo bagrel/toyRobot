@@ -51,7 +51,8 @@ typedef enum ERobotDirection
     ERobotDirection_North = 0,
     ERobotDirection_East = 1,
     ERobotDirection_South = 2,
-    ERobotDirection_West = 3
+    ERobotDirection_West = 3,
+    ERobotDirection_Invalid = 4
 } ERobotDirection_t;
 
 typedef CircularEnum<ERobotDirection,
@@ -72,6 +73,7 @@ typedef enum ECommand
     ECommand_Place = 0,
     ECommand_Left = 1,
     ECommand_Right = 2,
+    ECommand_Move = 3,
     ECommand_Report = 4,
     ECommand_Invalid = 5
 } ECommand_t;

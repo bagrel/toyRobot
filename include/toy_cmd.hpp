@@ -1,7 +1,8 @@
 #ifndef TOY_CMD
 #define TOY_CMD
-
+#include <vector>
 #include <string>
+#include "table.hpp"
 #include "type_definitions.hpp"
 #include "robot.hpp"
 
@@ -31,6 +32,18 @@ class CCommand_Report : public CCommand
         virtual void execute();
     private:
         CRobot* robot;
+        
+};
+
+class CCommand_Place : public CCommand
+{
+    public:
+        CCommand_Place(std::shared_ptr<CRobot>* in_robo, std::vector<std::string> in_args, CTable* in_table);
+        virtual void execute();
+    private:
+        std::shared_ptr<CRobot>* robot;
+        std::vector<std::string> args;
+        CTable* table;
         
 };
 
