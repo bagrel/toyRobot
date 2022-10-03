@@ -22,18 +22,18 @@ TEST(Robot_Test, rotate_left)
     ASSERT_EQ(2, test_rob.get_y_position());
     ASSERT_EQ(ERobotDirection_North, test_rob.get_direction());
 
-    test_rob.rotate(ERobotRotate_Left);
+    test_rob.rotate(ERobotRotate_CCW);
 
     ASSERT_EQ(1, test_rob.get_x_position());
     ASSERT_EQ(2, test_rob.get_y_position());
     ASSERT_EQ(ERobotDirection_West, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Left);
+    test_rob.rotate(ERobotRotate_CCW);
     ASSERT_EQ(ERobotDirection_South, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Left);
+    test_rob.rotate(ERobotRotate_CCW);
     ASSERT_EQ(ERobotDirection_East, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Left);
+    test_rob.rotate(ERobotRotate_CCW);
     ASSERT_EQ(ERobotDirection_North, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Left);
+    test_rob.rotate(ERobotRotate_CCW);
     ASSERT_EQ(ERobotDirection_West, test_rob.get_direction());
 }
 
@@ -46,18 +46,18 @@ TEST(Robot_Test, rotate_right)
     ASSERT_EQ(2, test_rob.get_y_position());
     ASSERT_EQ(ERobotDirection_North, test_rob.get_direction());
 
-    test_rob.rotate(ERobotRotate_Right);
+    test_rob.rotate(ERobotRotate_CW);
 
     ASSERT_EQ(1, test_rob.get_x_position());
     ASSERT_EQ(2, test_rob.get_y_position());
     ASSERT_EQ(ERobotDirection_East, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Right);
+    test_rob.rotate(ERobotRotate_CW);
     ASSERT_EQ(ERobotDirection_South, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Right);
+    test_rob.rotate(ERobotRotate_CW);
     ASSERT_EQ(ERobotDirection_West, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Right);
+    test_rob.rotate(ERobotRotate_CW);
     ASSERT_EQ(ERobotDirection_North, test_rob.get_direction());
-    test_rob.rotate(ERobotRotate_Right);
+    test_rob.rotate(ERobotRotate_CW);
     ASSERT_EQ(ERobotDirection_East, test_rob.get_direction());
 }
 
@@ -130,7 +130,7 @@ TEST(Table_Test, move_west)
 TEST(Table_Test, rotate_fail)
 {
     CTable test_table(5, 5);
-    ASSERT_FALSE(test_table.rotate(ERobotRotate_Left));
+    ASSERT_FALSE(test_table.rotate(ERobotRotate_CCW));
 }
 
 TEST(Table_Test, rotate_success)
@@ -138,11 +138,11 @@ TEST(Table_Test, rotate_success)
     CTable test_table(5, 5);
     SPosition_t pos = {4, 0};
     std::shared_ptr<CRobot> test_robo;
-    ASSERT_TRUE(test_table.rotate(ERobotRotate_Left));
+    ASSERT_TRUE(test_table.rotate(ERobotRotate_CCW));
     ASSERT_FALSE(test_table.move_robot_forward());
-    ASSERT_TRUE(test_table.rotate(ERobotRotate_Left));
+    ASSERT_TRUE(test_table.rotate(ERobotRotate_CCW));
     ASSERT_TRUE(test_table.move_robot_forward());
-    ASSERT_TRUE(test_table.rotate(ERobotRotate_Left));
+    ASSERT_TRUE(test_table.rotate(ERobotRotate_CCW));
     ASSERT_TRUE(test_table.move_robot_forward());
 }
 */

@@ -15,13 +15,13 @@ void CRobot::rotate(ERobotRotate_t direction)
 {
     switch(direction)
     {
-        case ERobotRotate_Left:
+        case ERobotRotate_CCW:
         {
             ERobotDirection_values::adv_left(cur_face);
         }
         break;
 
-        case ERobotRotate_Right:
+        case ERobotRotate_CW:
         {
             ERobotDirection_values::adv_right(cur_face);
         }

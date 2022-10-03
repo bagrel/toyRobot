@@ -28,9 +28,19 @@ int main(int, char** argv) {
         CLineParser cmdLine(l);
         switch(cmdLine.getCommand())
         {
-            case ECommand_Invalid:
+            case ECommand_Place:
             {
-                curCmdCls.reset(new CCommand_Invalid(l));
+                curCmdCls.reset(new CCommand_Place(&gameRobot, cmdLine.get_args(), &gameTable));
+            }
+            break;
+            case ECommand_Rotate:
+            {
+                curCmdCls.reset(new CCommand_Rotate(gameRobot.get(), cmdLine.get_args()));
+            }
+            break;
+            case ECommand_Move:
+            {
+                curCmdCls.reset(new CCommand_Move(&gameTable));
             }
             break;
             case ECommand_Report:
@@ -38,9 +48,9 @@ int main(int, char** argv) {
                 curCmdCls.reset(new CCommand_Report(gameRobot.get()));
             }
             break;
-            case ECommand_Place:
+            case ECommand_Invalid:
             {
-                curCmdCls.reset(new CCommand_Place(&gameRobot, cmdLine.get_args(), &gameTable));
+                curCmdCls.reset(new CCommand_Invalid(l));
             }
             break;
             default:
@@ -51,8 +61,4 @@ int main(int, char** argv) {
         }
         curCmdCls->execute();
     }
-
-     
-
-    
 }

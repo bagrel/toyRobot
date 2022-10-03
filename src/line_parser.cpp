@@ -21,12 +21,27 @@ ECommand_t CLineParser::getCommand()
 
     std::string commands[] ={"PLACE", "LEFT", "RIGHT", "MOVE", "REPORT"};
     int cmd_index = 0;
-    while(cmd_index < ECommand_Invalid && commands[cmd_index] != cmd)
+    if("PLACE" == cmd)
     {
-        cmd_index++;
+        return ECommand_Place;
+    } else if ("LEFT" == cmd)
+    {
+        args.push_back("CCW");
+        return ECommand_Rotate;
+    } else if ("RIGHT" == cmd)
+    {
+        args.push_back("CW");
+        return ECommand_Rotate;
+    } else if ("MOVE" == cmd)
+    {
+        return ECommand_Move;
+    } else if ("REPORT" == cmd)
+    {
+        return ECommand_Report;
+    } else
+    {
+        return ECommand_Invalid;
     }
-    ECommand_t a = ECommand_t(cmd_index);
-    return ECommand_t(cmd_index);
 }
 
 std::vector<std::string> CLineParser::get_args()

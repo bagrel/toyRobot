@@ -32,7 +32,6 @@ class CCommand_Report : public CCommand
         virtual void execute();
     private:
         CRobot* robot;
-        
 };
 
 class CCommand_Place : public CCommand
@@ -44,7 +43,24 @@ class CCommand_Place : public CCommand
         std::shared_ptr<CRobot>* robot;
         std::vector<std::string> args;
         CTable* table;
-        
 };
 
+class CCommand_Rotate : public CCommand
+{
+    public:
+        CCommand_Rotate(CRobot* in_robo, std::vector<std::string> in_args);
+        virtual void execute();
+    private:
+        CRobot* robot;
+        std::vector<std::string> args;
+};
+
+class CCommand_Move : public CCommand
+{
+    public:
+        CCommand_Move(CTable* in_table);
+        virtual void execute();
+    private:
+        CTable* table;
+};
 #endif
