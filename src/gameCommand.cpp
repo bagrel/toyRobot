@@ -19,6 +19,8 @@ args(in_args), table(in_table)
 {
 }
 
+std::string const CCommand_Place::faceStrings[] = {"NORTH","EAST","SOUTH","WEST"};
+
 void CCommand_Place::execute()
 {
     if(3 != args.size())
@@ -29,9 +31,8 @@ void CCommand_Place::execute()
     std::string arg = args.back();
     args.pop_back();
 
-    std::string face[] ={"NORTH", "EAST", "SOUTH", "WEST"};
     int face_index = 0;
-    while(face_index < ERobotDirection_Invalid && face[face_index] != arg)
+    while(face_index < ERobotDirection_Invalid && faceStrings[face_index] != arg)
     {
         face_index++;
     }

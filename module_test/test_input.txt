@@ -1,31 +1,37 @@
 a) Report while robot not exist
 REPORT
+CLOSE
 Output: Robot is not yet placed. Please restart APP
 
 b) Place Invalid Direction
 PLACE 0,0,NORTHEAST
 REPORT
+CLOSE
 Output: Robot is not yet placed. Please restart APP
 
 c) Place Invalid Position X
 PLACE 5,0,NORTH
 REPORT
+CLOSE
 Output: Robot is not yet placed. Please restart APP
 
 d) Place Invalid Position Y
 PLACE 0,-1,NORTH
 REPORT
+CLOSE
 Output: Robot is not yet placed. Please restart APP
 
 e) Place Success
 PLACE 0,0,NORTH
 REPORT
+CLOSE
 Output: 0,0,NORTH
 
 f) Rotate Left
 PLACE 0,0,NORTH
 LEFT
 REPORT
+CLOSE
 Output: 0,0,WEST
 
 g) Rotate Left 2x
@@ -33,6 +39,7 @@ PLACE 0,0,NORTH
 LEFT
 LEFT
 REPORT
+CLOSE
 Output: 0,0,SOUTH
 
 h) Rotate Left 3x
@@ -41,6 +48,7 @@ LEFT
 LEFT
 LEFT
 REPORT
+CLOSE
 Output: 0,0,EAST
 
 i) Rotate Left 4x
@@ -50,12 +58,14 @@ LEFT
 LEFT
 LEFT
 REPORT
+CLOSE
 Output: 0,0,NORTH
 
 j) Rotate Right
 PLACE 0,0,EAST
 RIGHT
 REPORT
+CLOSE
 Output: 0,0,SOUTH
 
 k) Rotate Right 2x
@@ -63,6 +73,7 @@ PLACE 0,0,EAST
 RIGHT
 RIGHT
 REPORT
+CLOSE
 Output: 0,0,WEST
 
 l) Rotate Right 3x
@@ -71,6 +82,7 @@ RIGHT
 RIGHT
 RIGHT
 REPORT
+CLOSE
 Output: 0,0,NORTH
 
 m) Rotate Right 4x
@@ -80,24 +92,28 @@ RIGHT
 RIGHT
 RIGHT
 REPORT
+CLOSE
 Output: 0,0,EAST
 
 n) Invalid Move
 PLACE 4,4,NORTH
 MOVE
 REPORT
+CLOSE
 Output: 4,4,NORTH
 
 o) Invalid then Valid Re-Place
 PLACE 5,0,NORTH
 PLACE 0,0,EAST
 REPORT
+CLOSE
 Output: 0,0,EAST
 
 p) Valid then Valid Re-Place
 PLACE 0,0,NORTH
 PLACE 3,4,EAST
 REPORT
+CLOSE
 Output: 3,4,EAST
 
 q) Valid then Valid Re-Place and Valid Move
@@ -105,4 +121,5 @@ PLACE 0,0,NORTH
 PLACE 3,4,EAST
 MOVE
 REPORT
+CLOSE
 Output: 4,4,EAST

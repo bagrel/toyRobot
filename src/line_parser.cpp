@@ -8,7 +8,7 @@ line(input_line)
 {
 }
 
-std::string const CLineParser::cmdStrings[] = {"PLACE", "LEFT", "RIGHT", "MOVE", "REPORT"};
+std::string const CLineParser::cmdStrings[] = {"PLACE", "LEFT", "RIGHT", "MOVE", "REPORT","CLOSE"};
 
 ECommand_t CLineParser::parse()
 {

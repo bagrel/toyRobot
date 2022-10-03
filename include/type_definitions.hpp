@@ -76,6 +76,7 @@ typedef enum ECommand
     ECommand_Right,
     ECommand_Move,
     ECommand_Report,
+    ECommand_Close,
     ECommand_Invalid
 } ECommand_t;
 

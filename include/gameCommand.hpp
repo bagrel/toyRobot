@@ -42,6 +42,7 @@ class CCommand_Place : public CCommand
     private:
         std::vector<std::string> args;
         CTable* table;
+        static const std::string faceStrings[];
 };
 
 class CCommand_Rotate : public CCommand

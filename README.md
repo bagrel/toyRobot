@@ -23,7 +23,13 @@ cd build
 make -j10
 ```
 
-To running the app:
+To run the app:
+APP can be run reading input file that contains list of commands
+```
+cd build
+./toyRobot [path-to-input].txt
+```
+APP can be also run in commandline mode if no input file is found
 ```
 cd build
 ./toyRobot
@@ -44,6 +50,7 @@ write Test Case with the following format in [project_directory]/module_test/tes
 ...
 [command input n]
 REPORT
+CLOSE
 Output: [Expected Output]
 ```
 Separate test cases by a new line

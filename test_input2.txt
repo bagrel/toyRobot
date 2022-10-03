@@ -1,0 +1,6 @@
+b)----------------
+PLACE 0,0,NORTH
+LEFT
+REPORT
+MOVE
+REPORT

@@ -4,6 +4,10 @@
 #include <line_parser.hpp>
 #include <gameCommand.hpp>
 #include <memory>
+#include <fstream>
+
+#define TABLE_SIZE_X 5
+#define TABLE_SIZE_Y 5
 
 using namespace std;
 
@@ -36,12 +40,20 @@ bool handleLineInput(CTable& gameTable, string line) {
         case ECommand_Report:
         {
             curCmdCls.reset(new CCommand_Report(gameTable.getRobotOnTable()));
-            cont = false;
         }
         break;
+        case ECommand_Invalid:
+        {
+            return cont;
+        }
+        case ECommand_Close:
+        {
+            return false;
+        }
         default:
         {
             cout<<"Unknown CommandType"<<endl;
+            return cont;
         }
         break;
     }
@@ -49,21 +61,45 @@ bool handleLineInput(CTable& gameTable, string line) {
     return cont;
 }
 
-int main(int, char** argv) {
-    cout<<"Welcome to ToyRobot APP"<<endl;
-    cout<<"Please use this following commands"<<endl;
-    cout<<"[PLACE x,y,direction]: Places a robot on specific coordinate(x,y) the table, facing (direction)"<<endl;
-    cout<<"[LEFT]: Rotates the robot counterclockwise"<<endl;
-    cout<<"[RIGHT]: Rotates the robot clockwise"<<endl;
-    cout<<"[REPORT]: Prints the robot's position and direction; Ends the APP"<<endl;
-    
-    CTable gameTable(5,5);
+int main(int argc, char** argv) {
 
-    bool cont = true;
-    while(cont)
+    CTable gameTable(TABLE_SIZE_X,TABLE_SIZE_Y);
+    string l;
+
+    if(argc < 2){
+        cout<<"Welcome to ToyRobot APP"<<endl;
+        cout<<"You are in CommandLineMode"<<endl;
+        cout<<"Please use this following commands"<<endl;
+        cout<<"[PLACE x,y,direction]: Places a robot on specific coordinate(x,y) the table, facing (direction)"<<endl;
+        cout<<"[LEFT]: Rotates the robot counterclockwise"<<endl;
+        cout<<"[RIGHT]: Rotates the robot clockwise"<<endl;
+        cout<<"[REPORT]: Prints the robot's position and direction"<<endl;
+        cout<<"[CLOSE]: Closes the app"<<endl;
+    
+        bool cont = true;
+        while(cont)
+        {
+            getline(cin,l);
+            cont = handleLineInput(gameTable, l);
+        }
+        return 0;
+    }
+    else 
     {
-        string l;
-        getline(cin,l);
-        cont = handleLineInput(gameTable, l);
+        ifstream inFile;
+        inFile.open(argv[1]);
+        if(inFile.is_open())
+        {
+            while(getline(inFile, l)) {
+                cout<<l<<endl;
+                handleLineInput(gameTable, l);
+            }
+            inFile.close();
+            return 0;
+        }
+        else
+        {
+            cout<<"Cannot open file: "<<argv[1]<<endl;
+        }
     }
 }
